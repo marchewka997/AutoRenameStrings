@@ -2,31 +2,26 @@ local _G, select, setmetatable                          = _G, select, setmetatab
 
 local TMW                                               = _G.TMW
 
-local aayUCM                                                = _G.Action
+local A                                                 = _G.Action
 
-local IqRiyF                                            = aayUCM.Const
-local wkAgxY                                            = aayUCM.Print
-local rneEsJ                                     = aayUCM.GetSpellInfo
-local GhncrC                                        = aayUCM.GetToggle
-local XGRXMh                                       = aayUCM.GetLatency
-local cKCAiP                                 = aayUCM.InterruptIsValid
-local lJtavb                                             = aayUCM.Unit
-local lOckhr                                       = _G.UnitIsUnit
-local RSNOeZ                                       = aayUCM.MultiUnits
-local CPkKuf                                     = aayUCM.CPkKuf
+local HCGIwg                                            = A.Const
+local WPCrRB                                     = A.GetSpellInfo
+local LiLQqt                                        = A.GetToggle
+local bHPkkz                                       = A.GetLatency
+local qBYijs                                 = A.InterruptIsValid
+local LggLxl                                             = A.Unit
 
 
-local ACTION_CONST_PALADIN_RETRIBUTION                  = IqRiyF.PALADIN_RETRIBUTION    
-local ipairs, pairs, type, CopyTable                    = _G.ipairs, _G.pairs, _G.type, _G.CopyTables
-local player                                            = "player"
+local ACTION_CONST_PALADIN_RETRIBUTION                  = HCGIwg.PALADIN_RETRIBUTION
+local vPlayer                                            = "player"
 
-local S                                                 = {
-    DivineShield                                        = (rneEsJ(642)),
-    BlessingofProtection                                = (rneEsJ(1022)),
-    ShieldofVengeance                                   = (rneEsJ(184662)),
-    Stoneform                                           = (rneEsJ(20594)),
-    HammerofJustice                                     = (rneEsJ(853)),
-    WordofGlory                                         = (rneEsJ(85673)),
+local iqSYpz                                                = {
+    DivineShield                                        = (WPCrRB(642)),
+    BlessingofProtection                                = (WPCrRB(1022)),
+    ShieldofVengeance                                   = (WPCrRB(184662)),
+    Stoneform                                           = (WPCrRB(20594)),
+    HammerofJustice                                     = (WPCrRB(853)),
+    WordofGlory                                         = (WPCrRB(85673)),
 }
 
 local L                                             = {}
@@ -80,30 +75,30 @@ L.CUSTOMINTERRUPTPVE_TT                                = {
     enUS = "Custom list for Interrupt and CC in Mythic+ and Raid",
 }
 L.STONEFORM											= {
-	enUS = S.Stoneform .. "\nHealth Percent",
-	ruRU = S.Stoneform .. "\nПроцент Здоровья",
+	enUS = iqSYpz.Stoneform .. "\nHealth Percent",
+	ruRU = iqSYpz.Stoneform .. "\nПроцент Здоровья",
 }
 L.DivineShield										= {
-	enUS = S.DivineShield .. "\nHealth Percent (Self)",
-	ruRU = S.DivineShield .. "\nЗдоровье Процент (Свое)",
+	enUS = iqSYpz.DivineShield .. "\nHealth Percent (Self)",
+	ruRU = iqSYpz.DivineShield .. "\nЗдоровье Процент (Свое)",
 }
 L.ShieldofVengeance										= {
-	enUS = S.ShieldofVengeance .. "\nHealth Percent (Self)",
-	ruRU = S.ShieldofVengeance .. "\nЗдоровье Процент (Свое)",
+	enUS = iqSYpz.ShieldofVengeance .. "\nHealth Percent (Self)",
+	ruRU = iqSYpz.ShieldofVengeance .. "\nЗдоровье Процент (Свое)",
 }
 L.BlessingofProtection										= {
-	enUS = S.BlessingofProtection .. "\nHealth Percent (Self)",
-	ruRU = S.BlessingofProtection .. "\nЗдоровье Процент (Свое)",
+	enUS = iqSYpz.BlessingofProtection .. "\nHealth Percent (Self)",
+	ruRU = iqSYpz.BlessingofProtection .. "\nЗдоровье Процент (Свое)",
 }
 L.WordofGlory										= {
-	enUS = S.WordofGlory.. "\nHealth Percent (Self)",
-	ruRU = S.WordofGlory .. "\nЗдоровье Процент (Свое)",
+	enUS = iqSYpz.WordofGlory.. "\nHealth Percent (Self)",
+	ruRU = iqSYpz.WordofGlory .. "\nЗдоровье Процент (Свое)",
 }
 L.HammerofJusticePvP										= {
-	ANY = "PvP " .. S.HammerofJustice,
+	ANY = "PvP " .. iqSYpz.HammerofJustice,
 }
 L.HammerofJusticePvPTT									= {
-	enUS = "@arena1-3 interrupt PvP list from 'Interrupts' tab by " .. S.HammerofJustice .. "\nMore custom config you can find in group by open /tmw\n\nRight click: Create macro",
+	enUS = "@arena1-3 interrupt PvP list from 'Interrupts' tab by " .. iqSYpz.HammerofJustice .. "\nMore custom config you can find in group by open /tmw\n\nRight click: Create macro",
 	ruRU = "@arena1-3 прерывание Параличом PvP списка из вкладки 'Прерывания'\nБольше кастомизации вы найдете в группе открыв /tmw\n\nПравая кнопка мышки: Создать макрос",
 }
 L.HammerofJusticePvP_ONLYHEAL								= {
@@ -120,8 +115,8 @@ L.HammerofJusticePvP_BOTH									= {
 }
 local SliderMarginOptions = { margin = { top = 10 } }
 local LayoutConfigOptions = { gutter = 4, padding = { left = 5, right = 5 } }
-aayUCM.Data.ProfileEnabled[aayUCM.CurrentProfile]             = true
-aayUCM.Data.ProfileUI                                     = {
+A.Data.ProfileEnabled[A.CurrentProfile]             = true
+A.Data.ProfileUI                                     = {
     DateTime = "v1.13 (22.11.2020)",
     [2] = {
         [ACTION_CONST_PALADIN_RETRIBUTION] = {
@@ -155,13 +150,13 @@ aayUCM.Data.ProfileUI                                     = {
                 },
                 
             },
-            {
+            { -- [2] Self Defensives
                 {
                     E                 = "Header",
                     L                 = L.DEFENSIVE,
                 },
             },
-            {
+            { -- [4]
 				{
 					E 				= "Slider",
 					MIN 			= -1,
@@ -183,7 +178,7 @@ aayUCM.Data.ProfileUI                                     = {
 					M 				= {},
 				},
             },
-            {
+            { -- [4]
 				{
 					E 				= "Slider",
 					MIN 			= -1,
@@ -254,31 +249,31 @@ aayUCM.Data.ProfileUI                                     = {
 local ImunBuffsCC	 		 				= {"CCTotalImun", "DamagePhysImun", "TotalImun"}
 local ImunBuffsInterrupt	 				= {"KickImun", "TotalImun", "DamagePhysImun"}
 
-function aayUCM:sSXOab(Tnoeol, jqBiuh)
-    if aayUCM.IsInPvP and (aayUCM.Zone == "arena" or aayUCM.Zone == "pvp") then
+function A:DYfFWB(BoCZPY, JCQiTi)
+    if A.IsInPvP and (A.Zone == "arena" or A.Zone == "pvp") then
         if self.isRebuke then
-            local TbqULc, _, _, NOmLdU = cKCAiP(Tnoeol, "Heal", nil, jqBiuh)
-            if not TbqULc then
-                TbqULc, _, _, NOmLdU = cKCAiP(Tnoeol, "PvP", nil, jqBiuh)
+            local SNftjd, _, _, MzbkCV = qBYijs(BoCZPY, "Heal", nil, JCQiTi)
+            if not SNftjd then
+                SNftjd, _, _, MzbkCV = qBYijs(BoCZPY, "PvP", nil, JCQiTi)
             end
-            if TbqULc and not NOmLdU and self:IsReadyByPassCastGCD(Tnoeol) and self:AbsentImun(Tnoeol, ImunBuffsInterrupt, true) then
+            if SNftjd and not MzbkCV and self:IsReadyByPassCastGCD(BoCZPY) and self:AbsentImun(BoCZPY, ImunBuffsInterrupt, true) then
                 return true
             end
         end
         
         if self.isHammer then
-            local HammerofJusticePvP = GhncrC(2, "HammerofJusticePvP")
-            if HammerofJusticePvP and HammerofJusticePvP ~= "OFF" and self:IsReadyByPassCastGCD(Tnoeol) then
-                local _, hvzSKV, yUdmeB
+            local HammerofJusticePvP = LiLQqt(2, "HammerofJusticePvP")
+            if HammerofJusticePvP and HammerofJusticePvP ~= "OFF" and self:IsReadyByPassCastGCD(BoCZPY) then
+                local _, gHPSiw, xfsMcc
                 if Toggle == "BOTH" then
-                    hvzSKV, _, _, yUdmeB = select(2, cKCAiP(Tnoeol, "Heal", nil, jqBiuh))
-                    if not hvzSKV then
-                        hvzSKV, _, _, yUdmeB = select(2, cKCAiP(Tnoeol, "PvP", nil, jqBiuh))
+                    gHPSiw, _, _, xfsMcc = select(2, qBYijs(BoCZPY, "Heal", nil, JCQiTi))
+                    if not gHPSiw then
+                        gHPSiw, _, _, xfsMcc = select(2, qBYijs(BoCZPY, "PvP", nil, JCQiTi))
                     end
                 else
-                    hvzSKV, _, _, yUdmeB = select(2, cKCAiP(Tnoeol, Toggle, nil, jqBiuh))
+                    gHPSiw, _, _, xfsMcc = select(2, qBYijs(BoCZPY, Toggle, nil, JCQiTi))
                 end
-                if hvzSKV and yUdmeB >= XGRXMh() and lJtavb(Tnoeol):IsControlAble("stun") and not lJtavb(Tnoeol):InLOS() and self:AbsentImun(Tnoeol, ImunBuffsCC, true) then
+                if gHPSiw and xfsMcc >= bHPkkz() and LggLxl(BoCZPY):IsControlAble("stun") and not LggLxl(BoCZPY):InLOS() and self:AbsentImun(BoCZPY, ImunBuffsCC, true) then
                     return true
                 end
             end
